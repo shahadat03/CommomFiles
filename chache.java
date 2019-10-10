@@ -1,3 +1,16 @@
+    public static void deleteAllCacheFile(Context context) {
+        ArrayList<String> allFile = getOfflineList(context, ALL_FILE);
+        for (int i = 0; i < allFile.size(); i++) {
+            //context.deleteFile(allFile.get(i));
+
+            saveOffline(context, allFile.get(i), null);
+        }
+    }
+
+    public static void deleteCacheFile(Context context, String file) {
+        context.deleteFile(file);
+    }
+
     public static <CLASS> void saveOffline(Context context, String file, CLASS data) {
 
         try {
