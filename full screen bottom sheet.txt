@@ -1,0 +1,102 @@
+Create a bottomsheet layout
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="0dp" // pick at container layout
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+other views
+
+</LinearLayout >
+
+
+Create a container layout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent">
+
+//main layout
+
+        <include layout="@layout/bottomsheet_bus_filter"
+            android:id="@+id/bottomSheet"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+Code at activity class
+
+
+init bottomsheet at onCreate
+
+    private BottomSheetBehavior mBehavior;
+    private View bottomSheet;
+
+    private void initBottomSheetBehavior() {
+        bottomSheet = findViewById(R.id.bottomSheet);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
+        final ViewGroup container = findViewById(R.id.bottomSheet);
+//        mBehavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
+        mBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+                int i = 0;
+
+
+                if (BottomSheetBehavior.STATE_EXPANDED == newState) {
+//                    b.bottomSheet.bottomLayout.setVisibility(View.GONE);
+
+                    TransitionManager.beginDelayedTransition(container);
+                }
+                if (BottomSheetBehavior.STATE_COLLAPSED == newState) {
+
+                    TransitionManager.beginDelayedTransition(container);
+
+                }
+
+                if (BottomSheetBehavior.STATE_HIDDEN == newState) {
+
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                TransitionManager.beginDelayedTransition(container);
+            }
+        });
+
+        bottomSheet.setOnClickListener(v -> {
+            mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            TransitionManager.beginDelayedTransition(container);
+
+        });
+
+        b.searchFilterBtn.setOnClickListener(v ->{
+            mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            TransitionManager.beginDelayedTransition(container);
+        });
+
+
+
+    }
+
+
+
+handle backpress
+    @Override
+    public void onBackPressed() {
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
