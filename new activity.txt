@@ -1,0 +1,9 @@
+    public void startActvity(Activity activity, Class<?> tClass, boolean isFinish) {
+        Intent intent = new Intent(activity, tClass);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        if (isFinish) {
+            activity.finish();
+        }
+
+    }
