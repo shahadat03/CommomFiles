@@ -1,5 +1,13 @@
-   implementation 'com.linchaolong.android:imagepicker:1.5'
+//on app level gradle file
+implementation 'com.linchaolong.android:imagepicker:1.5'
+   
+ //On manifest
+           <activity
+            android:name="com.linchaolong.android.imagepicker.cropper.CropImageActivity"
+            android:theme="@style/ImageCroper" />
+               
 
+           //    activity code
 int PROFILE_PIC_IMAGE = 23;
 public void selectProfilePic(int type) {
 
