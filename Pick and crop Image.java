@@ -1,6 +1,14 @@
 //on app level gradle file
 implementation 'com.linchaolong.android:imagepicker:1.5'
-   
+
+   //Style
+       <!--for image croper-->
+    <style name="ImageCroper" parent="Base.V7.Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
  //On manifest
            <activity
             android:name="com.linchaolong.android.imagepicker.cropper.CropImageActivity"
