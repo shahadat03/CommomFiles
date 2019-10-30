@@ -1,9 +1,23 @@
-package com.happihub.bd.Utility;
+//XML
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.TextView;
+        <com.happihub.bd.Utility.BatchView
+            android:id="@+id/notificationBatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-10dp"
+            android:layout_toEndOf="@id/img"
+            android:background="@drawable/notification_batch_background"
+            android:fontFamily="@font/open_sans_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="9"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_10ssp"
+            android:visibility="visible" />
 
+
+//Class
 public class BatchView extends TextView {
     public BatchView(Context context) {
         super(context);
